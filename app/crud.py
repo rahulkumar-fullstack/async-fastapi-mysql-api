@@ -42,3 +42,34 @@ async def create_user(user: User, session: AsyncSession) -> Optional[User]:
         await session.rollback()
         print(f"Error creating user: {e}")
         return None
+
+# Update a user
+async def update_user(user_id: int, user_data: dict, session: AsyncSession) -> Optional[User]:
+    try:
+        result = await session.execute(select(User).where(User.id == user_id))
+        user = result.scalar_one_or_none()
+        if user:
+            for key, value in user_data.items():
+                setattr(user, key, value)
+            await session.commit()
+            await session.refresh(user)
+        return user
+    except SQLAlchemyError as e:
+        await session.rollback()
+        print(f"Error updating user {user_id}: {e}")
+        return None
+
+# Delete a user
+async def delete_user(user_id: int, session: AsyncSession) -> bool:
+    try:
+        result = await session.execute(select(User).where(User.id == user_id))
+        user = result.scalar_one_or_none()
+        if user:
+            await session.delete(user)
+            await session.commit()
+            return True
+        return False
+    except SQLAlchemyError as e:
+        await session.rollback()
+        print(f"Error deleting user {user_id}: {e}")
+        return False
