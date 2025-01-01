@@ -12,9 +12,9 @@ async def get_db():
         yield session
 
 # Create user endpoint
-@router.post("/users/", response_model=User)
+@router.post("/", response_model=User)
 async def create_new_user(user: User, db: AsyncSession = Depends(get_db)):
-   # Check if the user already exists
+    # Check if the user already exists
     existing_user = await get_user_by_id(user.id, db)
     if existing_user:
         raise HTTPException(status_code=400, detail="User already exists")
@@ -24,7 +24,7 @@ async def create_new_user(user: User, db: AsyncSession = Depends(get_db)):
     return created_user
 
 # Get user endpoint
-@router.get("/users/{user_id}", response_model=User)
+@router.get("/{user_id}", response_model=User)
 async def read_user(user_id: int, db: AsyncSession = Depends(get_db)):
     user = await get_user_by_id(user_id, db)
     if not user:
@@ -32,7 +32,7 @@ async def read_user(user_id: int, db: AsyncSession = Depends(get_db)):
     return user
 
 # Update user endpoint
-@router.put("/users/{user_id}", response_model=User)
+@router.put("/{user_id}", response_model=User)
 async def update_existing_user(user_id: int, user: User, db: AsyncSession = Depends(get_db)):
     existing_user = await get_user_by_id(user_id, db)
     if not existing_user:
@@ -42,7 +42,7 @@ async def update_existing_user(user_id: int, user: User, db: AsyncSession = Depe
     return updated_user
 
 # Delete user endpoint
-@router.delete("/users/{user_id}", response_model=User)
+@router.delete("/{user_id}", response_model=User)
 async def delete_existing_user(user_id: int, db: AsyncSession = Depends(get_db)):
     user = await get_user_by_id(user_id, db)
     if not user:

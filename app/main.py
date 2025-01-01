@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.database import init_db
-from app.api.v1.users import router as user_router
+from app.api.routes import router as api_router
 
 # Define a lifespan context manager
 async def lifespan(app: FastAPI):
@@ -18,4 +18,4 @@ app = FastAPI(
 )
 
 # Include API routes
-app.include_router(user_router, prefix="/api/v1", tags=["Users"])
+app.include_router(api_router, prefix="/api", tags=["API"])
