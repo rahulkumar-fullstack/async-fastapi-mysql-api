@@ -2,11 +2,6 @@
 
 ![FastAPI](https://img.shields.io/badge/FastAPI-0078D7?style=for-the-badge&logo=fastapi&logoColor=white)  ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)  ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-BA2B00?style=for-the-badge&logo=sqlalchemy&logoColor=white)  ![Async Icon](https://img.shields.io/badge/Asyncmy-0078D7?style=for-the-badge&logo=asyncapi&logoColor=white)
 
-
-
-You can replace the SQLAlchemy shield with this Async icon or use it alongside the other icons if needed. Let me know if you need further adjustments!
-
-
 ## Description
 
 An **asynchronous REST API** built with **FastAPI** and **MySQL** as the database backend. This API provides CRUD operations for users and ensures high-performance, asynchronous database interactions.
