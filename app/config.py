@@ -1,11 +1,11 @@
 from pydantic_settings import BaseSettings
+from pydantic import ConfigDict
 
 # Environment settings using pydantic
 class Settings(BaseSettings):
     db_url: str  # Database connection URL
 
-    class Config:
-        env_file = ".env"
+    model_config = ConfigDict(env_file=".env")
 
 # Load settings
 settings = Settings()
