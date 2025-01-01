@@ -1,4 +1,4 @@
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 
 # Environment settings using pydantic
 class Settings(BaseSettings):
@@ -9,3 +9,5 @@ class Settings(BaseSettings):
 
 # Load settings
 settings = Settings()
+
+#print(settings.db_url)
