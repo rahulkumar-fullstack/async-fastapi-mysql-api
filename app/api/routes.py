@@ -5,5 +5,5 @@ from app.api.v1 import users
 router = APIRouter()
 
 # Include versioned routers
-router.include_router(users.router, prefix="/v1/users", tags=["Users"])
+router.include_router(users.router, prefix="/v1/users")
 
